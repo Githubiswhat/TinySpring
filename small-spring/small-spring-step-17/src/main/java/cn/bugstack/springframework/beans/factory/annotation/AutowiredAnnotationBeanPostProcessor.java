@@ -21,11 +21,11 @@ import java.lang.reflect.Field;
  * <p>
  * 处理 @Value、@Autowired，注解的 BeanPostProcessor
  * <p>
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public class AutowiredAnnotationBeanPostProcessor implements InstantiationAwareBeanPostProcessor, BeanFactoryAware {

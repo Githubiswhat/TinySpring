@@ -19,16 +19,6 @@ public class UserService implements BeanNameAware, BeanClassLoaderAware, Applica
     private UserDao userDao;
 
     @Override
-    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        this.beanFactory = beanFactory;
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
-
-    @Override
     public void setBeanName(String name) {
         System.out.println("Bean Name is：" + name);
     }
@@ -74,13 +64,22 @@ public class UserService implements BeanNameAware, BeanClassLoaderAware, Applica
         this.userDao = userDao;
     }
 
-
     public ApplicationContext getApplicationContext() {
         return applicationContext;
     }
 
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
     public BeanFactory getBeanFactory() {
         return beanFactory;
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        this.beanFactory = beanFactory;
     }
 
 }

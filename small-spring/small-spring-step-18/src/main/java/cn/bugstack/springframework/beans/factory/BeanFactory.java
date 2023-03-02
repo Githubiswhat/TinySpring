@@ -6,7 +6,7 @@ import cn.bugstack.springframework.beans.BeansException;
  * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
  * 公众号：bugstack虫洞栈
  * Create by 小傅哥(fustack)
- *
+ * <p>
  * 来自于对开源项目的学习；
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
@@ -32,6 +32,7 @@ public interface BeanFactory {
      * or abstract, lazy or eager, in scope or not. Therefore, note that a {@code true}
      * return value from this method does not necessarily indicate that {@link #getBean}
      * will be able to obtain an instance for the same name.
+     *
      * @param name the name of the bean to query
      * @return whether a bean with the given name is present
      */

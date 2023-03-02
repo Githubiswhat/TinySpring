@@ -12,7 +12,7 @@ public class BeanFactoryTransactionAttributeSourceAdvisor extends AbstractBeanFa
 
     private TransactionAttributeSource transactionAttributeSource;
 
-    private final TransactionAttributeSourcePointcut pointcut=new TransactionAttributeSourcePointcut() {
+    private final TransactionAttributeSourcePointcut pointcut = new TransactionAttributeSourcePointcut() {
         @Override
         protected TransactionAttributeSource getTransactionAttributeSource() {
             return transactionAttributeSource;
@@ -23,7 +23,7 @@ public class BeanFactoryTransactionAttributeSourceAdvisor extends AbstractBeanFa
         this.transactionAttributeSource = transactionAttributeSource;
     }
 
-    public void setClassFilter(ClassFilter classFilter){
+    public void setClassFilter(ClassFilter classFilter) {
         this.pointcut.setClassFilter(classFilter);
     }
 

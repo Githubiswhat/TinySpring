@@ -8,11 +8,11 @@ import cn.bugstack.springframework.core.io.ResourceLoader;
  * Abstract base class for bean definition readers which implement
  * the {@link BeanDefinitionReader} interface.
  * <p>
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {

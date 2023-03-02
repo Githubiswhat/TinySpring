@@ -5,9 +5,8 @@ import cn.bugstack.springframework.beans.factory.BeanFactory;
 import cn.bugstack.springframework.beans.factory.config.BeanDefinition;
 
 /**
- *
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
- *
+ * <p>
  * BeanDefinition 注册表接口
  */
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {

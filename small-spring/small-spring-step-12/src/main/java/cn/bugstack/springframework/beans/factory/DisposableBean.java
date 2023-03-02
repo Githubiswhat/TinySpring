@@ -5,12 +5,12 @@ package cn.bugstack.springframework.beans.factory;
  * on destruction. A BeanFactory is supposed to invoke the destroy
  * method if it disposes a cached singleton. An application context
  * is supposed to dispose all of its singletons on close.
- *
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public interface DisposableBean {

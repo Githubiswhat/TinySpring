@@ -11,17 +11,18 @@ import java.util.Map;
  * preload all their bean definitions (such as XML-based factories) may implement
  * this interface.
  * <p>
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
-public interface ListableBeanFactory extends BeanFactory{
+public interface ListableBeanFactory extends BeanFactory {
 
     /**
      * 按照类型返回 Bean 实例
+     *
      * @param type
      * @param <T>
      * @return
@@ -31,7 +32,7 @@ public interface ListableBeanFactory extends BeanFactory{
 
     /**
      * Return the names of all beans defined in this registry.
-     *
+     * <p>
      * 返回注册表中所有的Bean名称
      */
     String[] getBeanDefinitionNames();

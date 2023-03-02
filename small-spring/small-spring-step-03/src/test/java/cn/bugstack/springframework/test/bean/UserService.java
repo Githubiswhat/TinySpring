@@ -9,7 +9,7 @@ public class UserService {
 
     public UserService() {
     }
-    
+
     public UserService(String name) {
         this.name = name;
     }
@@ -20,8 +20,8 @@ public class UserService {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("");
-        sb.append("").append(name);
+        final StringBuilder sb = new StringBuilder();
+        sb.append(name);
         return sb.toString();
     }
 }

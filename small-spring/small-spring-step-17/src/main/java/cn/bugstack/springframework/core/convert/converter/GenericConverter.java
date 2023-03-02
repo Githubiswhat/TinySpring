@@ -9,11 +9,11 @@ import java.util.Set;
  * <p>
  * 通用的转换接口
  * <p>
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public interface GenericConverter {
@@ -25,7 +25,8 @@ public interface GenericConverter {
 
     /**
      * Convert the source object to the targetType described by the {@code TypeDescriptor}.
-     * @param source the source object to convert (may be {@code null})
+     *
+     * @param source     the source object to convert (may be {@code null})
      * @param sourceType the type descriptor of the field we are converting from
      * @param targetType the type descriptor of the field we are converting to
      * @return the converted object

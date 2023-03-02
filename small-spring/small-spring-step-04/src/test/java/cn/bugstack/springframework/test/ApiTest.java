@@ -7,13 +7,7 @@ import cn.bugstack.springframework.beans.factory.config.BeanReference;
 import cn.bugstack.springframework.beans.factory.support.DefaultListableBeanFactory;
 import cn.bugstack.springframework.test.bean.UserDao;
 import cn.bugstack.springframework.test.bean.UserService;
-import net.sf.cglib.proxy.Callback;
-import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.NoOp;
 import org.junit.Test;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
@@ -30,8 +24,8 @@ public class ApiTest {
 
         // 3. UserService 设置属性[uId、userDao]
         PropertyValues propertyValues = new PropertyValues();
-        propertyValues.addPropertyValue(new PropertyValue("uId", "10001"));
-        propertyValues.addPropertyValue(new PropertyValue("userDao",new BeanReference("userDao")));
+        propertyValues.addPropertyValue(new PropertyValue("uId", "10002"));
+        propertyValues.addPropertyValue(new PropertyValue("userDao", new BeanReference("userDao")));
 
         // 4. UserService 注入bean
         BeanDefinition beanDefinition = new BeanDefinition(UserService.class, propertyValues);

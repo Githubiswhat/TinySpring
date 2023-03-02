@@ -28,21 +28,21 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
 
 
     protected Object invokeWithinTransaction(Method method, Class<?> targetClass,
-                                             InvocationCallback invocation)throws Throwable {
+                                             InvocationCallback invocation) throws Throwable {
         TransactionAttributeSource tas = getTransactionAttributeSource();
         TransactionAttribute txAttr = (tas != null ? tas.getTransactionAttribute(method, targetClass) : null);
 
         PlatformTransactionManager tm = determineTransactionManager();
         String joinpointIdentification = methodIdentification(method, targetClass);
         TransactionInfo txInfo = createTransactionIfNecessary(tm, txAttr, joinpointIdentification);
-        Object retVal=null;
+        Object retVal = null;
 
         try {
-            retVal=invocation.proceedWithInvocation();
+            retVal = invocation.proceedWithInvocation();
         } catch (Throwable e) {
             completeTransactionAfterThrowing(txInfo, e);
             throw e;
-        }finally {
+        } finally {
             cleanupTransactionInfo(txInfo);
         }
         commitTransactionAfterReturning(txInfo);
@@ -80,8 +80,8 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
         return ClassUtils.getQualifiedMethodName(method, targetClass);
     }
 
-    protected TransactionInfo createTransactionIfNecessary(PlatformTransactionManager tm,TransactionAttribute txAttr,
-                                                           String joinpointIdentification){
+    protected TransactionInfo createTransactionIfNecessary(PlatformTransactionManager tm, TransactionAttribute txAttr,
+                                                           String joinpointIdentification) {
         if (txAttr != null && txAttr.getName() == null) {
             txAttr = new DelegatingTransactionAttribute(txAttr) {
                 @Override
@@ -140,13 +140,6 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
         }
     }
 
-
-
-    protected interface InvocationCallback {
-        Object proceedWithInvocation() throws Throwable;
-    }
-
-
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
         this.beanFactory = beanFactory;
@@ -155,6 +148,10 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
     @Override
     public void afterPropertiesSet() throws Exception {
 
+    }
+
+    protected interface InvocationCallback {
+        Object proceedWithInvocation() throws Throwable;
     }
 
     protected final class TransactionInfo {
@@ -196,6 +193,7 @@ public abstract class TransactionAspectSupport implements BeanFactoryAware, Init
         public boolean hasTransaction() {
             return null != this.transactionStatus;
         }
+
         private void bindToThread() {
             this.oldTransactionInfo = transactionInfoHolder.get();
             transactionInfoHolder.set(this);

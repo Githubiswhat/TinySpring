@@ -13,9 +13,8 @@ import java.util.Set;
  */
 public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
-    private Map<String, Object> singletonObjects = new HashMap<>();
-
     private final Map<String, DisposableBean> disposableBeans = new HashMap<>();
+    private Map<String, Object> singletonObjects = new HashMap<>();
 
     @Override
     public Object getSingleton(String beanName) {
@@ -33,7 +32,7 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
     public void destroySingletons() {
         Set<String> keySet = this.disposableBeans.keySet();
         Object[] disposableBeanNames = keySet.toArray();
-        
+
         for (int i = disposableBeanNames.length - 1; i >= 0; i--) {
             Object beanName = disposableBeanNames[i];
             DisposableBean disposableBean = disposableBeans.remove(beanName);

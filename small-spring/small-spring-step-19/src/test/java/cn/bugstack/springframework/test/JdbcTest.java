@@ -78,9 +78,9 @@ public class JdbcTest {
 
     @Test
     public void saveDataWithTranslationProxy() throws SQLException {
-        JdbcService jdbcService=new JdbcServiceImpl(statement);
+        JdbcService jdbcService = new JdbcServiceImpl(statement);
 
-        TransactionProxy transactionProxy=new TransactionProxy(connection,jdbcService);
+        TransactionProxy transactionProxy = new TransactionProxy(connection, jdbcService);
 
         JdbcService jdbcServiceProxy = (JdbcService) Proxy.newProxyInstance(jdbcService.getClass().getClassLoader(),
                 jdbcService.getClass().getInterfaces(), transactionProxy);

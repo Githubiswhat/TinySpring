@@ -20,10 +20,8 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
      * used as marker value for concurrent Maps (which don't support null values).
      */
     protected static final Object NULL_OBJECT = new Object();
-
-    private Map<String, Object> singletonObjects = new ConcurrentHashMap<>();
-
     private final Map<String, DisposableBean> disposableBeans = new LinkedHashMap<>();
+    private Map<String, Object> singletonObjects = new ConcurrentHashMap<>();
 
     @Override
     public Object getSingleton(String beanName) {
@@ -41,7 +39,7 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
     public void destroySingletons() {
         Set<String> keySet = this.disposableBeans.keySet();
         Object[] disposableBeanNames = keySet.toArray();
-        
+
         for (int i = disposableBeanNames.length - 1; i >= 0; i--) {
             Object beanName = disposableBeanNames[i];
             DisposableBean disposableBean = disposableBeans.remove(beanName);

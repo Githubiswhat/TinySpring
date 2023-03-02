@@ -14,19 +14,13 @@ import java.util.Map;
  */
 public class MethodParameter {
 
-    private volatile Class<?> containingClass;
-
     private final Executable executable;
-
     private final int parameterIndex;
-
-    private int nestingLevel = 1;
-
-    private volatile Type genericParameterType;
-
-    private volatile Class<?> parameterType;
-
     Map<Integer, Integer> typeIndexesPerLevel;
+    private volatile Class<?> containingClass;
+    private int nestingLevel = 1;
+    private volatile Type genericParameterType;
+    private volatile Class<?> parameterType;
 
     public MethodParameter(Method method, int parameterIndex) {
         this(method, parameterIndex, 1);
@@ -50,13 +44,9 @@ public class MethodParameter {
         this.nestingLevel = nestingLevel;
     }
 
-    void setContainingClass(Class<?> containingClass) {
-        this.containingClass = containingClass;
-    }
-
     private static int validateIndex(Executable executable, int parameterIndex) {
         int count = executable.getParameterCount();
-        if (parameterIndex<-1 || parameterIndex>=count){
+        if (parameterIndex < -1 || parameterIndex >= count) {
             throw new IllegalArgumentException("Parameter index needs to be between -1 and " + (count - 1));
         }
         return parameterIndex;
@@ -65,6 +55,10 @@ public class MethodParameter {
     public Class<?> getContainingClass() {
         Class<?> containingClass = this.containingClass;
         return (containingClass != null ? containingClass : getDeclaringClass());
+    }
+
+    void setContainingClass(Class<?> containingClass) {
+        this.containingClass = containingClass;
     }
 
     public Class<?> getDeclaringClass() {
@@ -93,8 +87,7 @@ public class MethodParameter {
             if (this.parameterIndex < 0) {
                 Method method = getMethod();
                 paramType = (method != null ? method.getGenericReturnType() : void.class);
-            }
-            else {
+            } else {
                 Type[] genericParameterTypes = this.executable.getGenericParameterTypes();
                 int index = this.parameterIndex;
                 if (this.executable instanceof Constructor &&
@@ -119,8 +112,7 @@ public class MethodParameter {
             if (this.parameterIndex < 0) {
                 Method method = getMethod();
                 paramType = (method != null ? method.getReturnType() : void.class);
-            }
-            else {
+            } else {
                 paramType = this.executable.getParameterTypes()[this.parameterIndex];
             }
             this.parameterType = paramType;

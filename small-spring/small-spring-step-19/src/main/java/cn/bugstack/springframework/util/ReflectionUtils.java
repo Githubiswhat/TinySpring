@@ -160,6 +160,29 @@ public class ReflectionUtils {
         }
     }
 
+    public static void makeAccessible(Method method) {
+        if ((!Modifier.isPublic(method.getModifiers()) ||
+                !Modifier.isPublic(method.getDeclaringClass().getModifiers())) && !method.isAccessible()) {
+            method.setAccessible(true);
+        }
+    }
+
+    public static boolean isEqualsMethod(Method method) {
+        if (method == null || !method.getName().equals("equals")) {
+            return false;
+        }
+        Class<?>[] paramTypes = method.getParameterTypes();
+        return (paramTypes.length == 1 && paramTypes[0] == Object.class);
+    }
+
+    public static boolean isHashCodeMethod(Method method) {
+        return (method != null && method.getName().equals("hashCode") && method.getParameterCount() == 0);
+    }
+
+    public static boolean isToStringMethod(Method method) {
+        return (method != null && method.getName().equals("toString") && method.getParameterCount() == 0);
+    }
+
     public interface MethodCallback {
         /**
          * Perform an operation using the given method.
@@ -177,28 +200,5 @@ public class ReflectionUtils {
          * @param method the method to check
          */
         boolean matches(Method method);
-    }
-
-    public static void makeAccessible(Method method) {
-        if ((!Modifier.isPublic(method.getModifiers()) ||
-                !Modifier.isPublic(method.getDeclaringClass().getModifiers())) && !method.isAccessible()) {
-            method.setAccessible(true);
-        }
-    }
-
-    public static boolean isEqualsMethod(Method method) {
-        if (method == null || !method.getName().equals("equals")) {
-            return false;
-        }
-        Class<?>[] paramTypes = method.getParameterTypes();
-        return (paramTypes.length == 1 && paramTypes[0] == Object.class);
-    }
-
-    public static boolean isHashCodeMethod( Method method) {
-        return (method != null && method.getName().equals("hashCode") && method.getParameterCount() == 0);
-    }
-
-    public static boolean isToStringMethod( Method method) {
-        return (method != null && method.getName().equals("toString") && method.getParameterCount() == 0);
     }
 }

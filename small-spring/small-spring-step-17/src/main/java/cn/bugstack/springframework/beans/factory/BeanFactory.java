@@ -27,6 +27,7 @@ public interface BeanFactory {
      * or abstract, lazy or eager, in scope or not. Therefore, note that a {@code true}
      * return value from this method does not necessarily indicate that {@link #getBean}
      * will be able to obtain an instance for the same name.
+     *
      * @param name the name of the bean to query
      * @return whether a bean with the given name is present
      */

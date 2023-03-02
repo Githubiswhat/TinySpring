@@ -10,11 +10,11 @@ import cn.bugstack.springframework.beans.BeansException;
  * <p>
  * XML 文件应用上下文
  * <p>
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContext {
@@ -36,6 +36,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 
     /**
      * 从 XML 中加载 BeanDefinition，并刷新上下文
+     *
      * @param configLocations
      * @throws BeansException
      */

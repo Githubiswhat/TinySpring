@@ -1,7 +1,6 @@
 package cn.bugstack.springframework.core;
 
 
-
 import cn.bugstack.springframework.core.util.ObjectUtils;
 
 import java.lang.reflect.Method;
@@ -9,7 +8,7 @@ import java.lang.reflect.Method;
 /**
  * @author zhangdd on 2022/2/26
  */
-public final class MethodClassKey implements Comparable<MethodClassKey>{
+public final class MethodClassKey implements Comparable<MethodClassKey> {
 
     private final Method method;
 
@@ -32,6 +31,7 @@ public final class MethodClassKey implements Comparable<MethodClassKey>{
         return (this.method.equals(otherKey.method) &&
                 ObjectUtils.nullSafeEquals(this.targetClass, otherKey.targetClass));
     }
+
     @Override
     public int hashCode() {
         return this.method.hashCode() + (this.targetClass != null ? this.targetClass.hashCode() * 29 : 0);

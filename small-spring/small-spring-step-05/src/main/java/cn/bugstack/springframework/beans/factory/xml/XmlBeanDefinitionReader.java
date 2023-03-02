@@ -19,12 +19,12 @@ import java.io.InputStream;
 
 /**
  * Bean definition reader for XML bean definitions.
- *
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
@@ -39,7 +39,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
     @Override
     public void loadBeanDefinitions(Resource resource) throws BeansException {
-        try (InputStream inputStream = resource.getInputStream()){
+        try (InputStream inputStream = resource.getInputStream()) {
             doLoadBeanDefinitions(inputStream);
         } catch (IOException | ClassNotFoundException e) {
             throw new BeansException("IOException parsing XML document from " + resource, e);
@@ -70,7 +70,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             if (!(childNodes.item(i) instanceof Element)) continue;
             // 判断对象
             if (!"bean".equals(childNodes.item(i).getNodeName())) continue;
-            
+
             // 解析标签
             Element bean = (Element) childNodes.item(i);
             String id = bean.getAttribute("id");

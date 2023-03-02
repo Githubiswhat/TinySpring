@@ -5,7 +5,7 @@ package cn.bugstack.springframework.core.util;
  */
 public class StringUtils {
 
-    public static String arrayToDelimitedString( Object[] arr, String delim) {
+    public static String arrayToDelimitedString(Object[] arr, String delim) {
         if (ObjectUtils.isEmpty(arr)) {
             return "";
         }
@@ -23,7 +23,7 @@ public class StringUtils {
         return sb.toString();
     }
 
-    public static boolean hasText( String str) {
+    public static boolean hasText(String str) {
         return (str != null && !str.isEmpty() && containsText(str));
     }
 

@@ -53,9 +53,6 @@ public class AnnotationUtils {
     private static final Map<Method, AliasDescriptor> aliasDescriptorCache =
             new ConcurrentReferenceHashMap<>(256);
 
-    
-
-
 
 //    @SuppressWarnings("unchecked")
 //    public static <A extends Annotation> A getAnnotation(Annotation annotation, Class<A> annotationType) {
@@ -74,7 +71,7 @@ public class AnnotationUtils {
 //    }
 //
 //
-    
+
     public static <A extends Annotation> A getAnnotation(AnnotatedElement annotatedElement, Class<A> annotationType) {
         try {
             A annotation = annotatedElement.getAnnotation(annotationType);
@@ -87,15 +84,13 @@ public class AnnotationUtils {
                 }
             }
             return (annotation != null ? synthesizeAnnotation(annotation, annotatedElement) : null);
-        }
-        catch (Throwable ex) {
+        } catch (Throwable ex) {
             handleIntrospectionFailure(annotatedElement, ex);
             return null;
         }
     }
 
 
-    
 //    public static <A extends Annotation> A getAnnotation(Method method, Class<A> annotationType) {
 //        Method resolvedMethod = BridgeMethodResolver.findBridgedMethod(method);
 //        return getAnnotation((AnnotatedElement) resolvedMethod, annotationType);
@@ -253,7 +248,7 @@ public class AnnotationUtils {
 //        return result;
 //    }
 
-    
+
 //    private static <A extends Annotation> A searchOnInterfaces(Method method, Class<A> annotationType, Class<?>... ifcs) {
 //        for (Class<?> ifc : ifcs) {
 //            Set<Method> annotatedMethods = getAnnotatedMethodsInBaseType(ifc);
@@ -312,8 +307,7 @@ public class AnnotationUtils {
                     }
                     annotatedMethods.add(baseMethod);
                 }
-            }
-            catch (Throwable ex) {
+            } catch (Throwable ex) {
                 handleIntrospectionFailure(baseMethod, ex);
             }
         }
@@ -342,6 +336,7 @@ public class AnnotationUtils {
     /**
      * Retrieve a potentially cached array of declared annotations for the
      * given element.
+     *
      * @param element the annotated element to introspect
      * @return a potentially cached array of declared annotations
      * (only for internal iteration purposes, not for external exposure)
@@ -363,7 +358,7 @@ public class AnnotationUtils {
 
     @SuppressWarnings("unchecked")
     private static <A extends Annotation> A findAnnotation(
-            Class<?> clazz,  Class<A> annotationType, boolean synthesize) {
+            Class<?> clazz, Class<A> annotationType, boolean synthesize) {
 
         Assert.notNull(clazz, "Class must not be null");
         if (annotationType == null) {
@@ -398,8 +393,7 @@ public class AnnotationUtils {
                     }
                 }
             }
-        }
-        catch (Throwable ex) {
+        } catch (Throwable ex) {
             handleIntrospectionFailure(clazz, ex);
             return null;
         }
@@ -461,7 +455,7 @@ public class AnnotationUtils {
 
 
     public static boolean isAnnotationMetaPresent(Class<? extends Annotation> annotationType,
-                                                   Class<? extends Annotation> metaAnnotationType) {
+                                                  Class<? extends Annotation> metaAnnotationType) {
 
         Assert.notNull(annotationType, "Annotation type must not be null");
         if (metaAnnotationType == null) {
@@ -482,15 +476,13 @@ public class AnnotationUtils {
     }
 
 
-    static boolean hasPlainJavaAnnotationsOnly( Object annotatedElement) {
+    static boolean hasPlainJavaAnnotationsOnly(Object annotatedElement) {
         Class<?> clazz;
         if (annotatedElement instanceof Class) {
             clazz = (Class<?>) annotatedElement;
-        }
-        else if (annotatedElement instanceof Member) {
+        } else if (annotatedElement instanceof Member) {
             clazz = ((Member) annotatedElement).getDeclaringClass();
-        }
-        else {
+        } else {
             return false;
         }
         String name = clazz.getName();
@@ -503,12 +495,12 @@ public class AnnotationUtils {
 //    }
 
 
-    static boolean isInJavaLangAnnotationPackage( Class<? extends Annotation> annotationType) {
+    static boolean isInJavaLangAnnotationPackage(Class<? extends Annotation> annotationType) {
         return (annotationType != null && isInJavaLangAnnotationPackage(annotationType.getName()));
     }
 
 
-    public static boolean isInJavaLangAnnotationPackage( String annotationType) {
+    public static boolean isInJavaLangAnnotationPackage(String annotationType) {
         return (annotationType != null && annotationType.startsWith("java.lang.annotation"));
     }
 
@@ -561,7 +553,7 @@ public class AnnotationUtils {
 //                (Object) annotatedElement, annotation, classValuesAsString, nestedAnnotationsAsMap);
 //    }
 
-    private static AnnotationAttributes getAnnotationAttributes( Object annotatedElement,
+    private static AnnotationAttributes getAnnotationAttributes(Object annotatedElement,
                                                                 Annotation annotation, boolean classValuesAsString, boolean nestedAnnotationsAsMap) {
 
         AnnotationAttributes attributes =
@@ -571,7 +563,7 @@ public class AnnotationUtils {
     }
 
 
-    static AnnotationAttributes retrieveAnnotationAttributes( Object annotatedElement,
+    static AnnotationAttributes retrieveAnnotationAttributes(Object annotatedElement,
                                                              Annotation annotation, boolean classValuesAsString, boolean nestedAnnotationsAsMap) {
 
         Class<? extends Annotation> annotationType = annotation.annotationType();
@@ -586,8 +578,7 @@ public class AnnotationUtils {
                 }
                 attributes.put(method.getName(),
                         adaptValue(annotatedElement, attributeValue, classValuesAsString, nestedAnnotationsAsMap));
-            }
-            catch (Throwable ex) {
+            } catch (Throwable ex) {
                 if (ex instanceof InvocationTargetException) {
                     Throwable targetException = ((InvocationTargetException) ex).getTargetException();
                     rethrowAnnotationConfigurationException(targetException);
@@ -600,15 +591,13 @@ public class AnnotationUtils {
     }
 
 
-    
-    static Object adaptValue( Object annotatedElement,  Object value,
+    static Object adaptValue(Object annotatedElement, Object value,
                              boolean classValuesAsString, boolean nestedAnnotationsAsMap) {
 
         if (classValuesAsString) {
             if (value instanceof Class) {
                 return ((Class<?>) value).getName();
-            }
-            else if (value instanceof Class[]) {
+            } else if (value instanceof Class[]) {
                 Class<?>[] clazzArray = (Class<?>[]) value;
                 String[] classNames = new String[clazzArray.length];
                 for (int i = 0; i < clazzArray.length; i++) {
@@ -622,8 +611,7 @@ public class AnnotationUtils {
             Annotation annotation = (Annotation) value;
             if (nestedAnnotationsAsMap) {
                 return getAnnotationAttributes(annotatedElement, annotation, classValuesAsString, true);
-            }
-            else {
+            } else {
                 return synthesizeAnnotation(annotation, annotatedElement);
             }
         }
@@ -637,8 +625,7 @@ public class AnnotationUtils {
                             getAnnotationAttributes(annotatedElement, annotations[i], classValuesAsString, true);
                 }
                 return mappedAnnotations;
-            }
-            else {
+            } else {
                 return synthesizeAnnotationArray(annotations, annotatedElement);
             }
         }
@@ -684,8 +671,8 @@ public class AnnotationUtils {
 //    }
 
 
-    static void postProcessAnnotationAttributes( Object annotatedElement,
-                                                 AnnotationAttributes attributes, boolean classValuesAsString, boolean nestedAnnotationsAsMap) {
+    static void postProcessAnnotationAttributes(Object annotatedElement,
+                                                AnnotationAttributes attributes, boolean classValuesAsString, boolean nestedAnnotationsAsMap) {
 
         if (attributes == null) {
             return;
@@ -726,14 +713,12 @@ public class AnnotationUtils {
                                         attributeName, aliasedAttributeName, ObjectUtils.nullSafeToString(value),
                                         ObjectUtils.nullSafeToString(aliasedValue)));
                             }
-                        }
-                        else if (aliasPresent) {
+                        } else if (aliasPresent) {
                             // Replace value with aliasedValue
                             attributes.put(attributeName,
                                     adaptValue(annotatedElement, aliasedValue, classValuesAsString, nestedAnnotationsAsMap));
                             valuesAlreadyReplaced.add(attributeName);
-                        }
-                        else {
+                        } else {
                             // Replace aliasedValue with value
                             attributes.put(aliasedAttributeName,
                                     adaptValue(annotatedElement, value, classValuesAsString, nestedAnnotationsAsMap));
@@ -761,13 +746,12 @@ public class AnnotationUtils {
     }
 
 
-    
     public static Object getValue(Annotation annotation) {
         return getValue(annotation, VALUE);
     }
 
-    
-    public static Object getValue( Annotation annotation,  String attributeName) {
+
+    public static Object getValue(Annotation annotation, String attributeName) {
         if (annotation == null || !StringUtils.hasText(attributeName)) {
             return null;
         }
@@ -775,16 +759,13 @@ public class AnnotationUtils {
             Method method = annotation.annotationType().getDeclaredMethod(attributeName);
             ReflectionUtils.makeAccessible(method);
             return method.invoke(annotation);
-        }
-        catch (NoSuchMethodException ex) {
+        } catch (NoSuchMethodException ex) {
             return null;
-        }
-        catch (InvocationTargetException ex) {
+        } catch (InvocationTargetException ex) {
             rethrowAnnotationConfigurationException(ex.getTargetException());
             throw new IllegalStateException("Could not obtain value for annotation attribute '" +
                     attributeName + "' in " + annotation, ex);
-        }
-        catch (Throwable ex) {
+        } catch (Throwable ex) {
             handleIntrospectionFailure(annotation.getClass(), ex);
             return null;
         }
@@ -795,7 +776,7 @@ public class AnnotationUtils {
 //    }
 
 
-    public static Object getDefaultValue( Annotation annotation,  String attributeName) {
+    public static Object getDefaultValue(Annotation annotation, String attributeName) {
         return (annotation != null ? getDefaultValue(annotation.annotationType(), attributeName) : null);
     }
 
@@ -805,15 +786,14 @@ public class AnnotationUtils {
 
 
     public static Object getDefaultValue(
-             Class<? extends Annotation> annotationType,  String attributeName) {
+            Class<? extends Annotation> annotationType, String attributeName) {
 
         if (annotationType == null || !StringUtils.hasText(attributeName)) {
             return null;
         }
         try {
             return annotationType.getDeclaredMethod(attributeName).getDefaultValue();
-        }
-        catch (Throwable ex) {
+        } catch (Throwable ex) {
             handleIntrospectionFailure(annotationType, ex);
             return null;
         }
@@ -826,13 +806,13 @@ public class AnnotationUtils {
 
 
     public static <A extends Annotation> A synthesizeAnnotation(
-            A annotation,  AnnotatedElement annotatedElement) {
+            A annotation, AnnotatedElement annotatedElement) {
 
         return synthesizeAnnotation(annotation, (Object) annotatedElement);
     }
 
     @SuppressWarnings("unchecked")
-    static <A extends Annotation> A synthesizeAnnotation(A annotation,  Object annotatedElement) {
+    static <A extends Annotation> A synthesizeAnnotation(A annotation, Object annotatedElement) {
         if (annotation instanceof SynthesizedAnnotation || hasPlainJavaAnnotationsOnly(annotatedElement)) {
             return annotation;
         }
@@ -848,7 +828,7 @@ public class AnnotationUtils {
 
         // Can always expose Spring's SynthesizedAnnotation marker since we explicitly check for a
         // synthesizable annotation before (which needs to declare @AliasFor from the same package)
-        Class<?>[] exposedInterfaces = new Class<?>[] {annotationType, SynthesizedAnnotation.class};
+        Class<?>[] exposedInterfaces = new Class<?>[]{annotationType, SynthesizedAnnotation.class};
         return (A) Proxy.newProxyInstance(annotation.getClass().getClassLoader(), exposedInterfaces, handler);
     }
 
@@ -871,7 +851,7 @@ public class AnnotationUtils {
 //    }
 
 
-    static Annotation[] synthesizeAnnotationArray(Annotation[] annotations,  Object annotatedElement) {
+    static Annotation[] synthesizeAnnotationArray(Annotation[] annotations, Object annotatedElement) {
         if (hasPlainJavaAnnotationsOnly(annotatedElement)) {
             return annotations;
         }
@@ -900,7 +880,7 @@ public class AnnotationUtils {
 //    }
 
 
-    static Map<String, List<String>> getAttributeAliasMap( Class<? extends Annotation> annotationType) {
+    static Map<String, List<String>> getAttributeAliasMap(Class<? extends Annotation> annotationType) {
         if (annotationType == null) {
             return Collections.emptyMap();
         }
@@ -959,8 +939,7 @@ public class AnnotationUtils {
                     synthesizable = Boolean.TRUE;
                     break;
                 }
-            }
-            else if (Annotation.class.isAssignableFrom(returnType)) {
+            } else if (Annotation.class.isAssignableFrom(returnType)) {
                 Class<? extends Annotation> nestedAnnotationType = (Class<? extends Annotation>) returnType;
                 if (isSynthesizable(nestedAnnotationType)) {
                     synthesizable = Boolean.TRUE;
@@ -980,7 +959,7 @@ public class AnnotationUtils {
     }
 
 
-    static String getAttributeOverrideName(Method attribute,  Class<? extends Annotation> metaAnnotationType) {
+    static String getAttributeOverrideName(Method attribute, Class<? extends Annotation> metaAnnotationType) {
         AliasDescriptor descriptor = AliasDescriptor.from(attribute);
         return (descriptor != null && metaAnnotationType != null ?
                 descriptor.getAttributeOverrideName(metaAnnotationType) : null);
@@ -1016,12 +995,12 @@ public class AnnotationUtils {
 //    }
 
 
-    static boolean isAttributeMethod( Method method) {
+    static boolean isAttributeMethod(Method method) {
         return (method != null && method.getParameterCount() == 0 && method.getReturnType() != void.class);
     }
 
 
-    static boolean isAnnotationTypeMethod( Method method) {
+    static boolean isAnnotationTypeMethod(Method method) {
         return (method != null && method.getName().equals("annotationType") && method.getParameterCount() == 0);
     }
 
@@ -1039,7 +1018,7 @@ public class AnnotationUtils {
     }
 
 
-    static void handleIntrospectionFailure( AnnotatedElement element, Throwable ex) {
+    static void handleIntrospectionFailure(AnnotatedElement element, Throwable ex) {
         rethrowAnnotationConfigurationException(ex);
 
     }
@@ -1175,10 +1154,11 @@ public class AnnotationUtils {
      * {@code AliasDescriptor} encapsulates the declaration of {@code @AliasFor}
      * on a given annotation attribute and includes support for validating
      * the configuration of aliases (both explicit and implicit).
-     * @since 4.2.1
+     *
      * @see #from
      * @see #getAttributeAliasNames
      * @see #getAttributeOverrideName
+     * @since 4.2.1
      */
     private static final class AliasDescriptor {
 
@@ -1195,34 +1175,6 @@ public class AnnotationUtils {
         private final String aliasedAttributeName;
 
         private final boolean isAliasPair;
-
-        /**
-         * Create an {@code AliasDescriptor} <em>from</em> the declaration
-         * of {@code @AliasFor} on the supplied annotation attribute and
-         * validate the configuration of {@code @AliasFor}.
-         * @param attribute the annotation attribute that is annotated with
-         * {@code @AliasFor}
-         * @return an alias descriptor, or {@code null} if the attribute
-         * is not annotated with {@code @AliasFor}
-         * @see #validateAgainst
-         */
-        
-        public static AliasDescriptor from(Method attribute) {
-            AliasDescriptor descriptor = aliasDescriptorCache.get(attribute);
-            if (descriptor != null) {
-                return descriptor;
-            }
-
-            AliasFor aliasFor = attribute.getAnnotation(AliasFor.class);
-            if (aliasFor == null) {
-                return null;
-            }
-
-            descriptor = new AliasDescriptor(attribute, aliasFor);
-            descriptor.validate();
-            aliasDescriptorCache.put(attribute, descriptor);
-            return descriptor;
-        }
 
         @SuppressWarnings("unchecked")
         private AliasDescriptor(Method sourceAttribute, AliasFor aliasFor) {
@@ -1244,8 +1196,7 @@ public class AnnotationUtils {
             }
             try {
                 this.aliasedAttribute = this.aliasedAnnotationType.getDeclaredMethod(this.aliasedAttributeName);
-            }
-            catch (NoSuchMethodException ex) {
+            } catch (NoSuchMethodException ex) {
                 String msg = String.format(
                         "Attribute '%s' in annotation [%s] is declared as an @AliasFor nonexistent attribute '%s' in annotation [%s].",
                         this.sourceAttributeName, this.sourceAnnotationType.getName(), this.aliasedAttributeName,
@@ -1254,6 +1205,35 @@ public class AnnotationUtils {
             }
 
             this.isAliasPair = (this.sourceAnnotationType == this.aliasedAnnotationType);
+        }
+
+        /**
+         * Create an {@code AliasDescriptor} <em>from</em> the declaration
+         * of {@code @AliasFor} on the supplied annotation attribute and
+         * validate the configuration of {@code @AliasFor}.
+         *
+         * @param attribute the annotation attribute that is annotated with
+         *                  {@code @AliasFor}
+         * @return an alias descriptor, or {@code null} if the attribute
+         * is not annotated with {@code @AliasFor}
+         * @see #validateAgainst
+         */
+
+        public static AliasDescriptor from(Method attribute) {
+            AliasDescriptor descriptor = aliasDescriptorCache.get(attribute);
+            if (descriptor != null) {
+                return descriptor;
+            }
+
+            AliasFor aliasFor = attribute.getAnnotation(AliasFor.class);
+            if (aliasFor == null) {
+                return null;
+            }
+
+            descriptor = new AliasDescriptor(attribute, aliasFor);
+            descriptor.validate();
+            aliasDescriptorCache.put(attribute, descriptor);
+            return descriptor;
         }
 
         private void validate() {
@@ -1333,6 +1313,7 @@ public class AnnotationUtils {
         /**
          * Determine if this descriptor represents an explicit override for
          * an attribute in the supplied {@code metaAnnotationType}.
+         *
          * @see #isAliasFor
          */
         private boolean isOverrideFor(Class<? extends Annotation> metaAnnotationType) {
@@ -1346,6 +1327,7 @@ public class AnnotationUtils {
          * <p>This method searches the attribute override hierarchy, beginning
          * with this descriptor, in order to detect implicit and transitively
          * implicit aliases.
+         *
          * @return {@code true} if this descriptor and the supplied descriptor
          * effectively alias the same annotation attribute
          * @see #isOverrideFor
@@ -1391,7 +1373,7 @@ public class AnnotationUtils {
             return otherDescriptors;
         }
 
-        
+
         public String getAttributeOverrideName(Class<? extends Annotation> metaAnnotationType) {
             // Search the attribute override hierarchy, starting with the current attribute
             for (AliasDescriptor desc = this; desc != null; desc = desc.getAttributeOverrideDescriptor()) {
@@ -1404,7 +1386,7 @@ public class AnnotationUtils {
             return null;
         }
 
-        
+
         private AliasDescriptor getAttributeOverrideDescriptor() {
             if (this.isAliasPair) {
                 return null;

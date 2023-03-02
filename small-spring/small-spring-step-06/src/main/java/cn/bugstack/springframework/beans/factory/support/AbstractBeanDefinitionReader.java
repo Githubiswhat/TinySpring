@@ -1,6 +1,5 @@
 package cn.bugstack.springframework.beans.factory.support;
 
-import cn.bugstack.springframework.beans.BeansException;
 import cn.bugstack.springframework.core.io.DefaultResourceLoader;
 import cn.bugstack.springframework.core.io.ResourceLoader;
 
@@ -8,18 +7,18 @@ import cn.bugstack.springframework.core.io.ResourceLoader;
  * Abstract base class for bean definition readers which implement
  * the {@link BeanDefinitionReader} interface.
  * <p>
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
 
     private final BeanDefinitionRegistry registry;
 
-    private ResourceLoader resourceLoader;
+    private final ResourceLoader resourceLoader;
 
     protected AbstractBeanDefinitionReader(BeanDefinitionRegistry registry) {
         this(registry, new DefaultResourceLoader());

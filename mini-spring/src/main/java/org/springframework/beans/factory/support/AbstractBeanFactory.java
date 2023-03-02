@@ -23,7 +23,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
 	private final Map<String, Object> factoryBeanObjectCache = new HashMap<>();
 
-	private final List<StringValueResolver> embeddedValueResolvers = new ArrayList<StringValueResolver>();
+	private final List<StringValueResolver> embeddedValueResolvers = new ArrayList<>();
 
 	private ConversionService conversionService;
 

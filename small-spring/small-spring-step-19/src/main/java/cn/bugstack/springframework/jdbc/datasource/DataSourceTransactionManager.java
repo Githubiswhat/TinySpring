@@ -32,12 +32,12 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
         afterPropertiesSet();
     }
 
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
     public DataSource getDataSource() {
         return dataSource;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
     protected DataSource obtainDataSource() {

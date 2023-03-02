@@ -2,14 +2,14 @@ package cn.bugstack.springframework.core.convert.converter;
 
 /**
  * For registering converters with a type conversion system.
- *
+ * <p>
  * 类型转换注册接口
- *
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public interface ConverterRegistry {
@@ -17,6 +17,7 @@ public interface ConverterRegistry {
     /**
      * Add a plain converter to this registry.
      * The convertible source/target type pair is derived from the Converter's parameterized types.
+     *
      * @throws IllegalArgumentException if the parameterized types could not be resolved
      */
     void addConverter(Converter<?, ?> converter);
@@ -29,6 +30,7 @@ public interface ConverterRegistry {
     /**
      * Add a ranged converter factory to this registry.
      * The convertible source/target type pair is derived from the ConverterFactory's parameterized types.
+     *
      * @throws IllegalArgumentException if the parameterized types could not be resolved
      */
     void addConverterFactory(ConverterFactory<?, ?> converterFactory);

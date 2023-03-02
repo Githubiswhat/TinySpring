@@ -11,11 +11,9 @@ import java.util.LinkedHashMap;
  */
 public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 
-    private final Class<? extends Annotation> annotationType;
-
-    boolean validated = false;
-
     final String displayName;
+    private final Class<? extends Annotation> annotationType;
+    boolean validated = false;
 
     public AnnotationAttributes(Class<? extends Annotation> annotationType) {
         Assert.notNull(annotationType, "'annotationType' must not be null");
@@ -34,8 +32,8 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
         if (!expectedType.isInstance(value) && expectedType.isArray() &&
                 expectedType.getComponentType().isInstance(value)) {
             Object array = Array.newInstance(expectedType.getComponentType(), 1);
-            Array.set(array,0,value);
-            value=array;
+            Array.set(array, 0, value);
+            value = array;
         }
 
         return (T) value;

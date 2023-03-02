@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class UserDao {
 
-    private static Map<String, String> hashMap = new HashMap<>();
+    private static final Map<String, String> hashMap = new HashMap<>();
 
     static {
         hashMap.put("10001", "小傅哥");

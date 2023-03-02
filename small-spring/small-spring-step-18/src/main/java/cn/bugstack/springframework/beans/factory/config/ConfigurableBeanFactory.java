@@ -26,6 +26,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 
     /**
      * Add a String resolver for embedded values such as annotation attributes.
+     *
      * @param valueResolver the String resolver to apply to embedded values
      * @since 3.0
      */
@@ -33,6 +34,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 
     /**
      * Resolve the given embedded value, e.g. an annotation attribute.
+     *
      * @param value the value to resolve
      * @return the resolved value (may be the original value as-is)
      * @since 3.0
@@ -40,17 +42,19 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
     String resolveEmbeddedValue(String value);
 
     /**
-     * Specify a Spring 3.0 ConversionService to use for converting
-     * property values, as an alternative to JavaBeans PropertyEditors.
-     * @since 3.0
-     */
-    void setConversionService(ConversionService conversionService);
-
-    /**
      * Return the associated ConversionService, if any.
+     *
      * @since 3.0
      */
     @Nullable
     ConversionService getConversionService();
+
+    /**
+     * Specify a Spring 3.0 ConversionService to use for converting
+     * property values, as an alternative to JavaBeans PropertyEditors.
+     *
+     * @since 3.0
+     */
+    void setConversionService(ConversionService conversionService);
 
 }

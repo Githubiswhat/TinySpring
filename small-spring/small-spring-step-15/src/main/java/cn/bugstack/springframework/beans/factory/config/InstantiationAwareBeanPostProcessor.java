@@ -8,11 +8,11 @@ import cn.bugstack.springframework.beans.PropertyValues;
  * and a callback after instantiation but before explicit properties are set or
  * autowiring occurs.
  * <p>
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {

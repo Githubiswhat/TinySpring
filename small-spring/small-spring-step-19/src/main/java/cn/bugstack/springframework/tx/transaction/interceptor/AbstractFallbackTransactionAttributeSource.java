@@ -12,15 +12,13 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public abstract class AbstractFallbackTransactionAttributeSource implements TransactionAttributeSource {
 
-    private final Map<Object, TransactionAttribute> attributeCache = new ConcurrentHashMap<>(1024);
-
     private static final TransactionAttribute NULL_TRANSACTION_ATTRIBUTE = new DefaultTransactionAttribute() {
         @Override
         public String toString() {
             return "null";
         }
     };
-
+    private final Map<Object, TransactionAttribute> attributeCache = new ConcurrentHashMap<>(1024);
 
     @Override
     public TransactionAttribute getTransactionAttribute(Method method, Class<?> targetClass) {

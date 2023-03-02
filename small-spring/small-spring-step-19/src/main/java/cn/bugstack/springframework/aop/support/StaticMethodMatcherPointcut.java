@@ -12,12 +12,12 @@ public abstract class StaticMethodMatcherPointcut extends StaticMethodMatcher im
 
     private ClassFilter classFilter = ClassFilter.TRUE;
 
-    public void setClassFilter(ClassFilter classFilter) {
-        this.classFilter = classFilter;
-    }
-
     public ClassFilter getClassFilter() {
         return classFilter;
+    }
+
+    public void setClassFilter(ClassFilter classFilter) {
+        this.classFilter = classFilter;
     }
 
     @Override

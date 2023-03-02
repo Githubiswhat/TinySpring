@@ -12,7 +12,7 @@ import java.util.Set;
  * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
  * 公众号：bugstack虫洞栈
  * Create by 小傅哥(fustack)
- *
+ * <p>
  * 来自于对开源项目的学习；
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
@@ -25,7 +25,8 @@ public interface GenericConverter {
 
     /**
      * Convert the source object to the targetType described by the {@code TypeDescriptor}.
-     * @param source the source object to convert (may be {@code null})
+     *
+     * @param source     the source object to convert (may be {@code null})
      * @param sourceType the type descriptor of the field we are converting from
      * @param targetType the type descriptor of the field we are converting to
      * @return the converted object

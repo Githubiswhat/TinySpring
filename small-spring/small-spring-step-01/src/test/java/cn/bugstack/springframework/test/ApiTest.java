@@ -7,14 +7,14 @@ import org.junit.Test;
 
 /**
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
-
-https://github.com/DerekYRC/mini-spring
-https://github.com/code4craft/tiny-spring
+ * <p>
+ * https://github.com/DerekYRC/mini-spring
+ * https://github.com/code4craft/tiny-spring
  */
 public class ApiTest {
 
     @Test
-    public void test_BeanFactory(){
+    public void test_BeanFactory() {
         // 1.初始化 BeanFactory
         BeanFactory beanFactory = new BeanFactory();
 

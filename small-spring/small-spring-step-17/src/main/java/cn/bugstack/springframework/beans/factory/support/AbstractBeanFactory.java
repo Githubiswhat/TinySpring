@@ -21,20 +21,17 @@ import java.util.List;
 public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport implements ConfigurableBeanFactory {
 
     /**
-     * ClassLoader to resolve bean class names with, if necessary
-     */
-    private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
-
-    /**
      * BeanPostProcessors to apply in createBean
      */
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
-
     /**
      * String resolvers to apply e.g. to annotation attribute values
      */
     private final List<StringValueResolver> embeddedValueResolvers = new ArrayList<>();
-
+    /**
+     * ClassLoader to resolve bean class names with, if necessary
+     */
+    private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
     private ConversionService conversionService;
 
     @Override
@@ -111,13 +108,13 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
     }
 
     @Override
-    public void setConversionService(ConversionService conversionService) {
-        this.conversionService = conversionService;
+    public ConversionService getConversionService() {
+        return conversionService;
     }
 
     @Override
-    public ConversionService getConversionService() {
-        return conversionService;
+    public void setConversionService(ConversionService conversionService) {
+        this.conversionService = conversionService;
     }
 
     /**

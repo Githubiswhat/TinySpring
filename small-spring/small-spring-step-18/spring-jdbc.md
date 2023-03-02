@@ -33,7 +33,6 @@ Spring对上述过程进行抽象化，处理了大部分通用的步骤形成sp
 
   这个是JdbcTemplate内部的私有实现方法，JdbcOperations接口中定义的一系列execute()方法也是调用的该方法
 
-
 **JdbcOperations**
 
 这个接口定义了非常多的入口方法，实现类就是JdbcTemplate

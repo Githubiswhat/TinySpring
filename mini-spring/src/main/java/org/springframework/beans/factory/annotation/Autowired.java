@@ -5,6 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Element;
+
 /**
  * @author derekyi
  * @date 2020/12/27
@@ -14,3 +16,8 @@ import java.lang.annotation.Target;
 public @interface Autowired {
 
 }
+
+
+
+
+

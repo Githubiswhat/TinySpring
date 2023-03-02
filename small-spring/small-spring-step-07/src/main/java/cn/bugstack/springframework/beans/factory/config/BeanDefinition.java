@@ -12,7 +12,7 @@ public class BeanDefinition {
     private PropertyValues propertyValues;
 
     private String initMethodName;
-    
+
     private String destroyMethodName;
 
     public BeanDefinition(Class beanClass) {

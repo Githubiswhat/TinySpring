@@ -8,11 +8,11 @@ import cn.bugstack.springframework.beans.PropertyValues;
  * and a callback after instantiation but before explicit properties are set or
  * autowiring occurs.
  * <p>
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
@@ -35,7 +35,7 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
      * Post-process the given property values before the factory applies them
      * to the given bean. Allows for checking whether all dependencies have been
      * satisfied, for example based on a "Required" annotation on bean property setters.
-     *
+     * <p>
      * 在 Bean 对象实例化完成后，设置属性操作之前执行此方法
      *
      * @param pvs

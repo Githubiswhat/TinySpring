@@ -2,7 +2,7 @@ package cn.bugstack.springframework.beans;
 
 /**
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
- *
+ * <p>
  * bean 属性信息
  */
 public class PropertyValue {

@@ -17,11 +17,11 @@ import java.util.Properties;
  * i.e. a properties file. Useful for custom config files targeted at system
  * administrators that override bean properties configured in the application context.
  * <p>
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public class PropertyPlaceholderConfigurer implements BeanFactoryPostProcessor {
@@ -65,7 +65,7 @@ public class PropertyPlaceholderConfigurer implements BeanFactoryPostProcessor {
             // 向容器中添加字符串解析器，供解析@Value注解使用
             StringValueResolver valueResolver = new PlaceholderResolvingStringValueResolver(properties);
             beanFactory.addEmbeddedValueResolver(valueResolver);
-            
+
         } catch (IOException e) {
             throw new BeansException("Could not load properties", e);
         }

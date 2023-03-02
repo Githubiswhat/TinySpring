@@ -249,6 +249,19 @@ public class AnnotatedElementUtils {
         };
     }
 
+    private interface Processor<T> {
+
+        T process(AnnotatedElement annotatedElement, Annotation annotation, int metaDepth);
+
+        void postProcess(AnnotatedElement annotatedElement, Annotation annotation, T result);
+
+        boolean alwaysProcesses();
+
+        boolean aggregates();
+
+        List<T> getAggregatedResults();
+    }
+
     private static class MergedAnnotationAttributesProcessor implements Processor<AnnotationAttributes> {
 
         private final boolean classValuesAsString;
@@ -363,18 +376,5 @@ public class AnnotatedElementUtils {
             Object value = AnnotationUtils.getValue(annotation, sourceAttributeName);
             return AnnotationUtils.adaptValue(element, value, this.classValuesAsString, this.nestedAnnotationsAsMap);
         }
-    }
-
-    private interface Processor<T> {
-
-        T process(AnnotatedElement annotatedElement, Annotation annotation, int metaDepth);
-
-        void postProcess(AnnotatedElement annotatedElement, Annotation annotation, T result);
-
-        boolean alwaysProcesses();
-
-        boolean aggregates();
-
-        List<T> getAggregatedResults();
     }
 }

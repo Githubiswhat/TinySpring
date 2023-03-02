@@ -17,12 +17,14 @@ import java.util.List;
  */
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
 
-    /** ClassLoader to resolve bean class names with, if necessary */
-    private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
-
-    /** BeanPostProcessors to apply in createBean */
+    /**
+     * BeanPostProcessors to apply in createBean
+     */
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
-
+    /**
+     * ClassLoader to resolve bean class names with, if necessary
+     */
+    private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
     @Override
     public Object getBean(String name) throws BeansException {
@@ -54,7 +56,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
     protected abstract Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException;
 
     @Override
-    public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor){
+    public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
         this.beanPostProcessors.remove(beanPostProcessor);
         this.beanPostProcessors.add(beanPostProcessor);
     }
@@ -70,5 +72,5 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
     public ClassLoader getBeanClassLoader() {
         return this.beanClassLoader;
     }
-    
+
 }

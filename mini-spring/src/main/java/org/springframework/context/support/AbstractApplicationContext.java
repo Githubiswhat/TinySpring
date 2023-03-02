@@ -169,11 +169,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	}
 
 	public void registerShutdownHook() {
-		Thread shutdownHook = new Thread() {
-			public void run() {
-				doClose();
-			}
-		};
+		Thread shutdownHook = new Thread(() -> doClose());
 		Runtime.getRuntime().addShutdownHook(shutdownHook);
 
 	}

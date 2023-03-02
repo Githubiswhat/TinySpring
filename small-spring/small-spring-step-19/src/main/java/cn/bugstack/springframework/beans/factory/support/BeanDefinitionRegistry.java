@@ -7,7 +7,7 @@ import cn.bugstack.springframework.beans.factory.config.BeanDefinition;
  * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
  * 公众号：bugstack虫洞栈
  * Create by 小傅哥(fustack)
- *
+ * <p>
  * 来自于对开源项目的学习；
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
@@ -32,6 +32,7 @@ public interface BeanDefinitionRegistry {
 
     /**
      * 判断是否包含指定名称的BeanDefinition
+     *
      * @param beanName
      * @return
      */
@@ -39,7 +40,7 @@ public interface BeanDefinitionRegistry {
 
     /**
      * Return the names of all beans defined in this registry.
-     *
+     * <p>
      * 返回注册表中所有的Bean名称
      */
     String[] getBeanDefinitionNames();

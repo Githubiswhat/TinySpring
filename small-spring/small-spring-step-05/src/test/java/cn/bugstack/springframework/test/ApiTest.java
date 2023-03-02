@@ -7,33 +7,22 @@ import cn.bugstack.springframework.beans.factory.config.BeanReference;
 import cn.bugstack.springframework.beans.factory.support.DefaultListableBeanFactory;
 import cn.bugstack.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import cn.bugstack.springframework.core.io.DefaultResourceLoader;
-import cn.bugstack.springframework.core.io.FileSystemResource;
 import cn.bugstack.springframework.core.io.Resource;
 import cn.bugstack.springframework.test.bean.UserDao;
 import cn.bugstack.springframework.test.bean.UserService;
 import cn.hutool.core.io.IoUtil;
-import net.sf.cglib.proxy.Callback;
-import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.NoOp;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.logging.Logger;
 
 /**
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public class ApiTest {
+
+    private DefaultResourceLoader resourceLoader;
 
     @Test
     public void test_BeanFactory() {
@@ -57,8 +46,6 @@ public class ApiTest {
         String result = userService.queryUserInfo();
         System.out.println("测试结果：" + result);
     }
-
-    private DefaultResourceLoader resourceLoader;
 
     @Before
     public void init() {

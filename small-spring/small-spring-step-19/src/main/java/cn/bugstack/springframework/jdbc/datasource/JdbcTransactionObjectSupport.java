@@ -7,15 +7,12 @@ public abstract class JdbcTransactionObjectSupport {
 
     private ConnectionHolder connectionHolder;
 
-
+    public ConnectionHolder getConnectionHolder() {
+        return connectionHolder;
+    }
 
     public void setConnectionHolder(ConnectionHolder connectionHolder) {
         this.connectionHolder = connectionHolder;
-    }
-
-
-    public ConnectionHolder getConnectionHolder() {
-        return connectionHolder;
     }
 
     public boolean hasConnectionHolder() {

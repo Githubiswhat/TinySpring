@@ -1,7 +1,6 @@
 package cn.bugstack.springframework.tx.transaction.support;
 
 
-
 import cn.bugstack.springframework.tx.transaction.NestedTransactionNotSupportedException;
 import cn.bugstack.springframework.tx.transaction.SavepointManager;
 import cn.bugstack.springframework.tx.transaction.TransactionException;
@@ -52,12 +51,12 @@ public abstract class AbstractTransactionStatus implements TransactionStatus {
         return completed;
     }
 
-    public void setSavepoint(Object savepoint) {
-        this.savepoint = savepoint;
-    }
-
     public Object getSavepoint() {
         return savepoint;
+    }
+
+    public void setSavepoint(Object savepoint) {
+        this.savepoint = savepoint;
     }
 
     @Override

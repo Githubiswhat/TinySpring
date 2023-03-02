@@ -1,5 +1,5 @@
-<svg width="148.0" height="20" viewBox="0 0 1480 200" xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="148.0" height="20" viewBox="0 0 1480 200"
+     xmlns="http://www.w3.org/2000/svg">
     <linearGradient id="a" x2="0" y2="100%">
         <stop offset="0" stop-opacity=".1" stop-color="#EEE"/>
         <stop offset="1" stop-opacity=".1"/>
@@ -7,7 +7,7 @@
     <mask id="m">
         <rect width="1480" height="200" rx="30" fill="#FFF"/>
     </mask>
-    <g mask="url(#m)">                                   
+    <g mask="url(#m)">
         <rect width="540" height="200" fill="#07c160"/>
         <rect width="940" height="200" fill="#e7232c" x="540"/>
         <rect width="1480" height="200" fill="url(#a)"/>

@@ -18,11 +18,11 @@ import java.util.Set;
  * Abstract implementation of the {@link ApplicationEventMulticaster} interface,
  * providing the basic listener registration facility.
  * <p>
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public abstract class AbstractApplicationEventMulticaster implements ApplicationEventMulticaster, BeanFactoryAware {
@@ -49,8 +49,9 @@ public abstract class AbstractApplicationEventMulticaster implements Application
     /**
      * Return a Collection of ApplicationListeners matching the given
      * event type. Non-matching listeners get excluded early.
+     *
      * @param event the event to be propagated. Allows for excluding
-     * non-matching listeners early, based on cached matching information.
+     *              non-matching listeners early, based on cached matching information.
      * @return a Collection of ApplicationListeners
      * @see cn.bugstack.springframework.context.ApplicationListener
      */

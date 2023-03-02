@@ -1,7 +1,6 @@
 package cn.bugstack.springframework.core;
 
 
-
 import cn.bugstack.springframework.core.util.ObjectUtils;
 import cn.bugstack.springframework.util.ReflectionUtils;
 
@@ -16,12 +15,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class SerializableTypeWrapper {
 
+    static final ConcurrentHashMap<Type, Type> cache = new ConcurrentHashMap<>(256);
     private static final Class<?>[] SUPPORTED_SERIALIZABLE_TYPES = {
             GenericArrayType.class, ParameterizedType.class, TypeVariable.class, WildcardType.class};
-
-
-    static final ConcurrentHashMap<Type, Type> cache = new ConcurrentHashMap<>(256);
-
 
     static Type forTypeProvider(TypeProvider provider) {
         Type providedType = provider.getType();
@@ -43,7 +39,7 @@ public final class SerializableTypeWrapper {
         for (Class<?> type : SUPPORTED_SERIALIZABLE_TYPES) {
             if (type.isInstance(providedType)) {
                 ClassLoader classLoader = provider.getClass().getClassLoader();
-                Class<?>[] interfaces = new Class<?>[] {type, SerializableTypeProxy.class, Serializable.class};
+                Class<?>[] interfaces = new Class<?>[]{type, SerializableTypeProxy.class, Serializable.class};
                 InvocationHandler handler = new TypeProxyInvocationHandler(provider);
                 cached = (Type) Proxy.newProxyInstance(classLoader, interfaces, handler);
                 cache.put(providedType, cached);
@@ -79,6 +75,13 @@ public final class SerializableTypeWrapper {
     }
 
 
+    interface SerializableTypeProxy {
+
+        /**
+         * Return the underlying type provider.
+         */
+        TypeProvider getTypeProvider();
+    }
 
     static class MethodParameterTypeProvider implements TypeProvider {
 
@@ -116,26 +119,15 @@ public final class SerializableTypeWrapper {
                 if (this.methodName != null) {
                     this.methodParameter = new MethodParameter(
                             this.declaringClass.getDeclaredMethod(this.methodName, this.parameterTypes), this.parameterIndex);
-                }
-                else {
+                } else {
                     this.methodParameter = new MethodParameter(
                             this.declaringClass.getDeclaredConstructor(this.parameterTypes), this.parameterIndex);
                 }
-            }
-            catch (Throwable ex) {
+            } catch (Throwable ex) {
                 throw new IllegalStateException("Could not find original class structure", ex);
             }
         }
     }
-
-    interface SerializableTypeProxy {
-
-        /**
-         * Return the underlying type provider.
-         */
-        TypeProvider getTypeProvider();
-    }
-
 
     private static class TypeProxyInvocationHandler implements InvocationHandler, Serializable {
 
@@ -146,7 +138,7 @@ public final class SerializableTypeWrapper {
         }
 
         @Override
-        public Object invoke(Object proxy, Method method,  Object[] args) throws Throwable {
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             if (method.getName().equals("equals") && args != null) {
                 Object other = args[0];
                 // Unwrap proxies for speed
@@ -154,18 +146,15 @@ public final class SerializableTypeWrapper {
                     other = unwrap((Type) other);
                 }
                 return ObjectUtils.nullSafeEquals(this.provider.getType(), other);
-            }
-            else if (method.getName().equals("hashCode")) {
+            } else if (method.getName().equals("hashCode")) {
                 return ObjectUtils.nullSafeHashCode(this.provider.getType());
-            }
-            else if (method.getName().equals("getTypeProvider")) {
+            } else if (method.getName().equals("getTypeProvider")) {
                 return this.provider;
             }
 
             if (Type.class == method.getReturnType() && args == null) {
                 return forTypeProvider(new MethodInvokeTypeProvider(this.provider, method, -1));
-            }
-            else if (Type[].class == method.getReturnType() && args == null) {
+            } else if (Type[].class == method.getReturnType() && args == null) {
                 Type[] result = new Type[((Type[]) method.invoke(this.provider.getType())).length];
                 for (int i = 0; i < result.length; i++) {
                     result[i] = forTypeProvider(new MethodInvokeTypeProvider(this.provider, method, i));
@@ -175,8 +164,7 @@ public final class SerializableTypeWrapper {
 
             try {
                 return method.invoke(this.provider.getType(), args);
-            }
-            catch (InvocationTargetException ex) {
+            } catch (InvocationTargetException ex) {
                 throw ex.getTargetException();
             }
         }

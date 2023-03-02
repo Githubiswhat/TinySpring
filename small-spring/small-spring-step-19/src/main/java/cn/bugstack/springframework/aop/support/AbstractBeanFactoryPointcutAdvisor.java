@@ -18,20 +18,12 @@ public abstract class AbstractBeanFactoryPointcutAdvisor extends AbstractPointcu
 
     private transient volatile Object adviceMonitor = new Object();
 
-
-    public void setAdviceBeanName(String adviceBeanName) {
-        this.adviceBeanName = adviceBeanName;
-    }
-
     public String getAdviceBeanName() {
         return adviceBeanName;
     }
 
-
-    public void setAdvice(Advice advice) {
-        synchronized (this.adviceMonitor) {
-            this.advice = advice;
-        }
+    public void setAdviceBeanName(String adviceBeanName) {
+        this.adviceBeanName = adviceBeanName;
     }
 
     @Override
@@ -49,6 +41,11 @@ public abstract class AbstractBeanFactoryPointcutAdvisor extends AbstractPointcu
         return advice;
     }
 
+    public void setAdvice(Advice advice) {
+        synchronized (this.adviceMonitor) {
+            this.advice = advice;
+        }
+    }
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) {

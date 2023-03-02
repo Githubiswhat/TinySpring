@@ -12,5 +12,5 @@ public interface JdbcService {
     void saveDataWithTranslation() throws SQLException;
 
 
-    void saveData(JdbcTemplate jdbcTemplate) ;
+    void saveData(JdbcTemplate jdbcTemplate);
 }

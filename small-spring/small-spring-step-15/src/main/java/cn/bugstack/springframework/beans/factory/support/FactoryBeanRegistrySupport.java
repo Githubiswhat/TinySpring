@@ -11,11 +11,11 @@ import java.util.concurrent.ConcurrentHashMap;
  * {@link cn.bugstack.springframework.beans.factory.FactoryBean} instances,
  * integrated with {@link DefaultSingletonBeanRegistry}'s singleton management.
  * <p>
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry {
@@ -43,7 +43,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
         }
     }
 
-    private Object doGetObjectFromFactoryBean(final FactoryBean factory, final String beanName){
+    private Object doGetObjectFromFactoryBean(final FactoryBean factory, final String beanName) {
         try {
             return factory.getObject();
         } catch (Exception e) {

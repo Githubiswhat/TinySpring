@@ -23,11 +23,11 @@ import java.lang.reflect.Method;
  * Implements the {@link cn.bugstack.springframework.beans.factory.config.AutowireCapableBeanFactory}
  * interface in addition to AbstractBeanFactory's {@link #createBean} method.
  * <p>
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
@@ -208,7 +208,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 }
 
                 // 反射设置属性填充
-                 BeanUtil.setFieldValue(bean, name, value);
+                BeanUtil.setFieldValue(bean, name, value);
             }
         } catch (Exception e) {
             throw new BeansException("Error setting property values：" + beanName + " message：" + e);

@@ -21,6 +21,7 @@ public @interface AliasFor {
 
     /**
      * The name of the attribute that <em>this</em> attribute is an alias for.
+     *
      * @see #value
      */
     @AliasFor("value")

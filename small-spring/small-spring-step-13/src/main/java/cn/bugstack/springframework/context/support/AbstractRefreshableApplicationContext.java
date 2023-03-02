@@ -10,12 +10,12 @@ import cn.bugstack.springframework.beans.factory.support.DefaultListableBeanFact
  * creating a new internal bean factory instance every time.
  * Typically (but not necessarily), such a context will be driven by
  * a set of config locations to load bean definitions from.
- *
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public abstract class AbstractRefreshableApplicationContext extends AbstractApplicationContext {

@@ -6,12 +6,12 @@ import cn.bugstack.springframework.core.io.ResourceLoader;
 
 /**
  * Simple interface for bean definition readers.
- *
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public interface BeanDefinitionReader {

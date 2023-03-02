@@ -21,7 +21,7 @@ import java.util.Set;
  * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
  * 公众号：bugstack虫洞栈
  * Create by 小傅哥(fustack)
- *
+ * <p>
  * 来自于对开源项目的学习；
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
@@ -49,8 +49,9 @@ public abstract class AbstractApplicationEventMulticaster implements Application
     /**
      * Return a Collection of ApplicationListeners matching the given
      * event type. Non-matching listeners get excluded early.
+     *
      * @param event the event to be propagated. Allows for excluding
-     * non-matching listeners early, based on cached matching information.
+     *              non-matching listeners early, based on cached matching information.
      * @return a Collection of ApplicationListeners
      * @see cn.bugstack.springframework.context.ApplicationListener
      */

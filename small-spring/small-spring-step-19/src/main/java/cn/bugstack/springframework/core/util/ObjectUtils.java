@@ -11,11 +11,11 @@ public class ObjectUtils {
 
     private static final String NULL_STRING = "null";
 
-    public static boolean isEmpty( Object[] array) {
+    public static boolean isEmpty(Object[] array) {
         return (array == null || array.length == 0);
     }
 
-    public static String nullSafeToString( Object obj) {
+    public static String nullSafeToString(Object obj) {
         if (obj == null) {
             return NULL_STRING;
         }
@@ -100,7 +100,7 @@ public class ObjectUtils {
         return false;
     }
 
-    public static int nullSafeHashCode( Object obj) {
+    public static int nullSafeHashCode(Object obj) {
         if (obj == null) {
             return 0;
         }

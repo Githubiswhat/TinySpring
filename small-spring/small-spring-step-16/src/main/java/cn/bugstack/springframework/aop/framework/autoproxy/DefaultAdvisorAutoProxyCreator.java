@@ -22,18 +22,17 @@ import java.util.Set;
  * Advisors in the current BeanFactory. This class is completely generic; it contains
  * no special code to handle any particular aspects, such as pooling aspects.
  * <p>
- *
- *
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
+ * <p>
+ * <p>
  * 作者：DerekYRC https://github.com/DerekYRC/mini-spring
  */
 public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPostProcessor, BeanFactoryAware {
 
-    private DefaultListableBeanFactory beanFactory;
-
     private final Set<Object> earlyProxyReferences = Collections.synchronizedSet(new HashSet<Object>());
+    private DefaultListableBeanFactory beanFactory;
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {

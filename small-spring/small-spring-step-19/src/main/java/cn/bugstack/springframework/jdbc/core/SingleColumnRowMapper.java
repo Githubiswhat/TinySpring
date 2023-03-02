@@ -1,7 +1,6 @@
 package cn.bugstack.springframework.jdbc.core;
 
 
-
 import cn.bugstack.springframework.jdbc.IncorrectResultSetColumnCountException;
 import cn.bugstack.springframework.jdbc.support.JdbcUtils;
 import cn.bugstack.springframework.util.NumberUtils;

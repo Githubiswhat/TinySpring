@@ -33,6 +33,18 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
         afterPropertiesSet();
     }
 
+    private static String getSql(Object sqlProvider) {
+        if (sqlProvider instanceof SqlProvider) {
+            return ((SqlProvider) sqlProvider).getSql();
+        } else {
+            return null;
+        }
+    }
+
+    private static <T> T result(T result) {
+        Assert.state(null != result, "No result");
+        return result;
+    }
 
     public int getFetchSize() {
         return fetchSize;
@@ -147,14 +159,6 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
     protected UncategorizedSQLException translateException(String task, String sql, SQLException ex) {
         return new UncategorizedSQLException(task, sql, ex);
-    }
-
-    private static String getSql(Object sqlProvider) {
-        if (sqlProvider instanceof SqlProvider) {
-            return ((SqlProvider) sqlProvider).getSql();
-        } else {
-            return null;
-        }
     }
 
     @Override
@@ -282,11 +286,6 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
     @Override
     public List<Map<String, Object>> queryForList(String sql, Object... args) {
         return query(sql, args, getColumnMapRowMapper());
-    }
-
-    private static <T> T result(T result) {
-        Assert.state(null != result, "No result");
-        return result;
     }
 
     protected RowMapper<Map<String, Object>> getColumnMapRowMapper() {

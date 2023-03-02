@@ -1,7 +1,6 @@
 package cn.bugstack.springframework.core;
 
 
-
 import cn.bugstack.springframework.util.ClassUtils;
 import cn.bugstack.springframework.util.ReflectionUtils;
 
@@ -17,7 +16,6 @@ import java.util.List;
 public class BridgeMethodResolver {
     private BridgeMethodResolver() {
     }
-
 
 
     public static Method findBridgedMethod(Method bridgeMethod) {
@@ -44,8 +42,7 @@ public class BridgeMethodResolver {
         if (bridgedMethod != null) {
             // Bridged method found...
             return bridgedMethod;
-        }
-        else {
+        } else {
             // A bridge method was passed in but we couldn't find the bridged method.
             // Let's proceed with the passed-in method and hope for the best...
             return bridgeMethod;
@@ -69,8 +66,7 @@ public class BridgeMethodResolver {
         for (Method candidateMethod : candidateMethods) {
             if (isBridgeMethodFor(bridgeMethod, candidateMethod, bridgeMethod.getDeclaringClass())) {
                 return candidateMethod;
-            }
-            else if (previousMethod != null) {
+            } else if (previousMethod != null) {
                 sameSig = sameSig &&
                         Arrays.equals(candidateMethod.getGenericParameterTypes(), previousMethod.getGenericParameterTypes());
             }
@@ -120,6 +116,7 @@ public class BridgeMethodResolver {
     /**
      * Searches for the generic {@link Method} declaration whose erased signature
      * matches that of the supplied bridge method.
+     *
      * @throws IllegalStateException if the generic declaration cannot be found
      */
 
@@ -144,8 +141,7 @@ public class BridgeMethodResolver {
             Method method = searchForMatch(ifc, bridgeMethod);
             if (method != null && !method.isBridge()) {
                 return method;
-            }
-            else {
+            } else {
                 method = searchInterfaces(ifc.getInterfaces(), bridgeMethod);
                 if (method != null) {
                     return method;
@@ -164,8 +160,7 @@ public class BridgeMethodResolver {
     private static Method searchForMatch(Class<?> type, Method bridgeMethod) {
         try {
             return type.getDeclaredMethod(bridgeMethod.getName(), bridgeMethod.getParameterTypes());
-        }
-        catch (NoSuchMethodException ex) {
+        } catch (NoSuchMethodException ex) {
             return null;
         }
     }
@@ -175,6 +170,7 @@ public class BridgeMethodResolver {
      * the parameter and return types are the same, it is a 'visibility' bridge method
      * introduced in Java 6 to fix https://bugs.java.com/view_bug.do?bug_id=6342411.
      * See also https://stas-blogspot.blogspot.com/2010/03/java-bridge-methods-explained.html
+     *
      * @return whether signatures match as described
      */
     public static boolean isVisibilityBridgeMethodPair(Method bridgeMethod, Method bridgedMethod) {

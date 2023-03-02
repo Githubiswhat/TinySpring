@@ -31,6 +31,14 @@ public class ConnectionHolder {
         return this.connectionHandler != null;
     }
 
+    protected Connection getConnection() {
+        Assert.notNull(this.connectionHandler, "Active connection is required.");
+        if (null == this.currentConnection) {
+            this.currentConnection = this.connectionHandler.getConnection();
+        }
+        return this.currentConnection;
+    }
+
     protected void setConnection(Connection connection) {
         if (null != this.currentConnection) {
             if (null != this.connectionHandler) {
@@ -44,15 +52,6 @@ public class ConnectionHolder {
             this.connectionHandler = null;
         }
     }
-
-    protected Connection getConnection() {
-        Assert.notNull(this.connectionHandler, "Active connection is required.");
-        if (null == this.currentConnection) {
-            this.currentConnection = this.connectionHandler.getConnection();
-        }
-        return this.currentConnection;
-    }
-
 
 
 }

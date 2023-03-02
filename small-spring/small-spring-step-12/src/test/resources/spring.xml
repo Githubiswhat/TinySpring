@@ -7,7 +7,8 @@
 
     <bean id="beforeAdvice" class="cn.bugstack.springframework.test.bean.UserServiceBeforeAdvice"/>
 
-    <bean id="methodInterceptor" class="cn.bugstack.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor">
+    <bean id="methodInterceptor"
+          class="cn.bugstack.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor">
         <property name="advice" ref="beforeAdvice"/>
     </bean>
 
